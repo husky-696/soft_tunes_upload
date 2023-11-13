@@ -10,8 +10,6 @@ const axios = require('axios');
 const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
-console.log('Current working directory:', process.cwd());
-console.log('Resolved path:', path.resolve('./models/ProfilePIcture'));
 const ProfilePicture = require('./models/ProfilePIcture');
 const User = require('./models/User');
 
