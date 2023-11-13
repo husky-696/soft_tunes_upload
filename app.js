@@ -17,7 +17,7 @@ require('dotenv').config();
 
 const app = express();
 const router = express.Router();
-
+const port = process.env.PORT || 3000;
 // Rest of your code...
 
 // Middlewares
