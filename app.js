@@ -10,12 +10,19 @@ const axios = require('axios');
 const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
+
 const ProfilePicture = require('./models/ProfilePicture');
 const User = require('./models/User');
 
 require('dotenv').config();
 
 const app = express();
+
+
+console.log('Current working directory:', process.cwd());
+console.log('Resolved path:', path.resolve('./models/ProfilePicture'));
+
+// Rest of your code...
 
 // Middlewares
 app.use(express.static('public'));
