@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "routes": [
+  "builds": [
     {
-      "src": "/.*",
-      "dest": "app.js"
+      "src": "app.js",
+      "use": "@vercel/node"
     }
   ]
 }
