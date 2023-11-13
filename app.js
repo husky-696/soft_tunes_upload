@@ -106,7 +106,7 @@ app.post('/register', async (req, res) => {
 
   try {
     await user.save();
-    res.redirect('/login.html'); // Redirect to the login page
+    res.redirect('/index.html'); // Redirect to the login page
   } catch (error) {
     res.status(500).send('An error occurred during registration');
   }
@@ -117,7 +117,7 @@ app.post('/login', (req, res, next) => {
   console.log('Received a login request');
   passport.authenticate('local', {
     successRedirect: 'homepage',
-    failureRedirect: '/login.html',
+    failureRedirect: '/index.html',
     failureFlash: true,
   })(req, res, next);
 });
@@ -147,7 +147,7 @@ app.get('/profile', (req, res) => {
     res.render('profile', { user: req.user, userName: req.user.username });
   } else {
     // Redirect to the login page if not authenticated
-    res.redirect('/login.html');
+    res.redirect('/index.html');
   }
 });
 
@@ -318,7 +318,7 @@ app.get('/logout', (req, res) => {
       // Handle the error, if any.
       console.error(err);
     }
-    res.redirect('/login.html'); // Redirect to the home page or any other page you prefer.
+    res.redirect('/index.html'); // Redirect to the home page or any other page you prefer.
   });
 });
 
