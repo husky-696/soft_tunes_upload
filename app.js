@@ -39,10 +39,6 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 
-// Catch-all route to serve index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -128,10 +124,15 @@ app.post('/register', async (req, res) => {
 app.post('/login', (req, res, next) => {
   console.log('Received a login request');
   passport.authenticate('local', {
-    successRedirect: 'homepage',
+    successRedirect: '/homepage',
     failureRedirect: '/index.html',
     failureFlash: true,
   })(req, res, next);
+});
+
+app.get('/homepage', (req, res) => {
+  // Render your homepage.ejs file
+  res.render('homepage', { /* your data */ });
 });
 
 // In your Node.js code
