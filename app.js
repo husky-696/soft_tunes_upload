@@ -17,7 +17,6 @@ require('dotenv').config();
 
 const app = express();
 const router = express.Router();
-const port = process.env.PORT || 3000;
 // Rest of your code...
 
 // Middlewares
@@ -336,9 +335,6 @@ app.get('/logout', (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
 
 // Export the app for Vercel deployment
 module.exports = app;
