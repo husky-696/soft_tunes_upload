@@ -1,36 +1,34 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('express-flash');
-const session = require('express-session');
 const bcrypt = require('bcrypt');
+const axios = require('axios');
+const path = require('path');
+const multer = require('multer');
+const fs = require('fs');
+const ProfilePicture = require('./models/ProfilePicture');
 const User = require('./models/User');
-const path = require('path'); // Import the path module
-const multer = require('multer'); // For handling file uploads
-const axios = require('axios'); // You can use Axios for making API requests
-const fs = require('fs');  // Add this line to import the fs module
-const ProfilePicture = require('./models/ProfilePIcture');
 
 require('dotenv').config();
 
-
 const app = express();
-const router = express.Router();
 
-
-
-
-app.use(express.static('public'));
+// Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.set('view engine', 'ejs'); // Set EJS as the view engine
-app.set('views', path.join(__dirname, 'views')); // Specify the views directory (replace 'views' with the actual path)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 
 
@@ -46,12 +44,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-
-// Connect to your MongoDB database using the environment variable
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
 
 // Passport.js Configuration
 passport.use(
@@ -330,6 +322,4 @@ app.get('/logout', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+module.exports = app;
