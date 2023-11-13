@@ -28,6 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.set('view engine', 'ejs'); // Set EJS as the view engine
 app.set('views', path.join(__dirname, 'pages')); // Specify the views directory (replace 'views' with the actual path)
+app.set('view engine', 'ejs');
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
@@ -131,9 +132,9 @@ app.post('/login', (req, res, next) => {
 });
 
 app.get('/homepage', (req, res) => {
-  // Render your homepage.ejs file
-  res.render('homepage', { /* your data */ });
+  res.render('pages/homepage', { /* your data */ });
 });
+
 
 // In your Node.js code
 app.get('/homepage', async (req, res) => {
