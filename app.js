@@ -27,7 +27,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.set('view engine', 'ejs'); // Set EJS as the view engine
-app.set('views', path.join(__dirname, 'views')); // Specify the views directory (replace 'views' with the actual path)
+app.set('views', path.join(__dirname, 'pages')); // Specify the views directory (replace 'views' with the actual path)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
