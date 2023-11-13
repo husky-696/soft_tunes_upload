@@ -12,7 +12,7 @@ const multer = require('multer');
 const fs = require('fs');
 console.log('Current working directory:', process.cwd());
 console.log('Resolved path:', path.resolve('./models/ProfilePicture'));
-const ProfilePicture = require('./models/ProfilePicture');
+const ProfilePicture = require('./models/ProfilePIcture');
 const User = require('./models/User');
 
 require('dotenv').config();
