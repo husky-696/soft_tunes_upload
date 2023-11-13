@@ -31,6 +31,8 @@ app.set('view engine', 'ejs'); // Set EJS as the view engine
 app.set('views', path.join(__dirname, 'views')); // Specify the views directory (replace 'views' with the actual path)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+
+
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -38,6 +40,10 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 
+// Catch-all route to serve index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -329,4 +335,6 @@ app.get('/logout', (req, res) => {
   });
 });
 
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
