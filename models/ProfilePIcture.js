@@ -11,3 +11,4 @@ const profilePictureSchema = new mongoose.Schema({
 const ProfilePicture = mongoose.model('ProfilePicture', profilePictureSchema, 'user_pfps');
 
 module.exports = ProfilePicture;
+
